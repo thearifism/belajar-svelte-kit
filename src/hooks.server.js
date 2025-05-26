@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { env as publicEnv } from '$env/dynamic/public';
-import { DB_HOST, DB_PORT } from '$env/static/private';
 import { PUBLIC_NAME } from '$env/static/public';
+import { connect } from '$lib/server/database';
 
 export async function handle({ event, resolve }) {
   console.log(`receive request :  ${event.url.href}`);
@@ -11,8 +11,7 @@ export async function handle({ event, resolve }) {
 
 export function init() {
   console.log('init application');
-  console.log(DB_HOST);
-  console.log(DB_PORT);
+  connect();
   console.log(PUBLIC_NAME);
 
   console.log(env.HELLO);
